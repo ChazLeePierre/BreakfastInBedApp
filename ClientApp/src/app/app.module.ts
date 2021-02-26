@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
@@ -10,20 +10,15 @@ import { HomeComponent } from './compenents/home/home.component';
 import { BreakfastComponent } from './compenents/breakfast/breakfast.component';
 import { BreakfastService } from './services/breakfast.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatRippleModule } from '@angular/material/core';
+import { AngularMaterialModule } from './material.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    BreakfastComponent
+    BreakfastComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -31,14 +26,10 @@ import { MatRippleModule } from '@angular/material/core';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatChipsModule,
-    MatRippleModule,
+    AngularMaterialModule,
+    FlexLayoutModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'breakfast', component: BreakfastComponent },
+      { path: '', component: BreakfastComponent, pathMatch: 'full' }
     ])
   ],
   providers: [BreakfastService],

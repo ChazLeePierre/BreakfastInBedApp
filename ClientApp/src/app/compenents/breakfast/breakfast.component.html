@@ -1,2 +1,136 @@
-<h1>Breakfast</h1>
+<div fxLayout="row" fxLayoutAlign="center center">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <h4>Start your day out right with our complimentary breakfast delivered directly to your room.</h4>
+    </div>
+    <hr />
+    <!-- Order Information -->
+    <div class="bgimage" fxLayoutAlign="center center">
+      <mat-card class="example-card">
+        <div fxLayout="row" fxLayoutAlign="center center">
+          <mat-card-header>
+            <mat-card-title>Order Information</mat-card-title>
+          </mat-card-header>
+        </div>
+        <mat-card-content>
+          <div fxLayout="row" fxLayoutAlign="center center">
+            <mat-card-subtitle>Customer #{{customerID.value}}</mat-card-subtitle>
+          </div>
+          <mat-label *ngFor="let b of beveragesPreview" fxLayoutAlign="center center">
+            {{b}}
+          </mat-label>
+          <mat-label *ngFor="let p of platterPreview" fxLayoutAlign="center center">
+            {{p}}
+          </mat-label>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+
+
+    <hr />
+
+    <div fxLayout="row" fxLayoutAlign="center center">
+
+      <div fxFlex="50%">
+
+        <!-- Room Number -->
+        <div fxFlex="100%" fxLayoutAlign="center center">
+          <mat-form-field class="form-field" appearance="fill" [hideRequiredMarker]="true">
+            <mat-label fxLayoutAlign="center center">
+              Room Number
+            </mat-label>
+            <input matInput formControlName="roomNumber" required>
+            <mat-error *ngIf="roomNumber.touched && roomNumber.invalid">
+              <span *ngIf="roomNumber.errors.required">This field is mandatory.</span>
+              <span *ngIf="roomNumber.errors.pattern">This field is invalid.</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+      </div>
+
+      <div fxFlex="50%">
+
+        <!-- Number of Occupants -->
+        <div fxFlex="100%" fxLayoutAlign="center center">
+          <mat-form-field class="form-field" appearance="fill" [hideRequiredMarker]="true">
+            <mat-label fxLayoutAlign="center center">
+              Number of Occupants
+            </mat-label>
+            <input matInput formControlName="noOfOccupants" required>
+            <mat-error *ngIf="form.controls.roomNumber.touched && form.controls.roomNumber.invalid">
+              <span *ngIf="noOfOccupants.errors.required">This field is mandatory.</span>
+              <span *ngIf="noOfOccupants.errors.pattern">This field is invalid.</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+      </div>
+
+    </div>
+
+    <hr />
+
+    <!-- Beverage -->
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <h5>Beverage Selection</h5>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <h6>Would you like a carafe of:</h6>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="32px">
+      <mat-checkbox *ngFor="let b of beverageItems; let i = index" [formControl]="beverages.controls[i]">
+        {{b.name}}
+      </mat-checkbox>
+    </div>
+
+    <hr />
+    <!-- Platter -->
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <h5>Platter Selection</h5>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <h6>The following platter for two accompanied by assorted whole fruits will be served:</h6>
+    </div>
+
+    <mat-chip-list selectable multiple [formControl]="platter">
+      <mat-chip #chip="matChip" (click)="chip.toggleSelected(true)"
+                *ngFor="let option of platterItems">
+        {{option.name}}
+      </mat-chip>
+    </mat-chip-list>
+    <br />
+
+    <hr />
+
+    <!-- Delivery -->
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <h5>Delivery</h5>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <h6>Please select your preferred delivery time:</h6>
+    </div>
+
+    <div fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="flex-start">
+      <mat-selection-list #time [multiple]="false" [formControl]="delivery">
+        <mat-list-option fxFlex="0 1 calc(33.3% - 32px)" *ngFor="let t of deliveryTimes" [value]="t.start">
+          {{t.start}} - {{t.end}}
+        </mat-list-option>
+      </mat-selection-list>
+    </div>
+
+    <hr />
+
+    <!-- Submit -->
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <button mat-raised-button color="primary" type="submit">Submit</button>
+    </div>
+
+  </form>
+</div>
 

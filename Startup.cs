@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using BreakfastInBed.Services;
 
 namespace BreakfastInBed
 {
@@ -26,6 +27,8 @@ namespace BreakfastInBed
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            services.AddTransient<IBreakfastService, BreakfastService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,6 +47,7 @@ namespace BreakfastInBed
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
             if (!env.IsDevelopment())
             {
                 app.UseSpaStaticFiles();

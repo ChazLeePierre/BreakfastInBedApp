@@ -5,6 +5,6 @@ interface Breakfast
     beverageId: number;
     beverage: string;
     platterFoodIds: number[];
-    platterFoods: number[];
-    deliveryTime: Date;
+    platterFoods: string[];
+    deliveryTime: string;
 }
