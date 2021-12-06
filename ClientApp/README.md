@@ -1,3 +1,0 @@
-# Breakfast In Bed App
-
-This project is an application that allows hotel users to order breakfast in bed right from the comfort of their room. It was developed using Angular and .NET Core 3.1. I was requested to develop this application by a potential employer. The specifications of the task was to develop a web application that accepts customer information that is filled in by the end-user. The company is one of the biggest players in the hospitality industry, so I think the hotel/breakfast in bed idea was a good choice. I had fun with this task & felt like I got to showcase some of my creativity.
